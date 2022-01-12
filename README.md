@@ -65,6 +65,15 @@ user=> (specter/transform
  [:h2.find-me {:changed :me} "My Subtitle"]]
 ```
 
+### Complete Function List
+
+Inspecter exposes the following functions for Hiccup path navigation and transformation:
+
+- `inspecter.core/matches` - Returns a recursive path navigator
+- `inspecter.core/ATTRS` - Path navigator to an element's attributes.
+- `inspecter.core/CONTENTS` - Path navigator to an element's contents.
+- `inspecter.core/update-attrs` - Helper for updating an element's attributes.
+
 ### CSS Selectors
 
 Inspecter matches Hiccup elements via simple, limited-scope CSS selectors. While the 
