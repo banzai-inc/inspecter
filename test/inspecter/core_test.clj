@@ -38,10 +38,17 @@
     (is (vector? c3))))
 
 (deftest transform-test
-  (let [els (->> (specter/transform
-                   [(inspect/matches :.find-me) inspect/ATTRS]
-                   (inspect/update-attrs #(assoc % :changed :me))
-                   hiccup)
-                 (specter/select [(inspect/matches :.find-me) inspect/ATTRS]))]
-    (is (every? #(= :me (:changed %)) els))))
+  (testing "update attributes"
+    (let [els (->> (specter/transform
+                     [(inspect/matches :.find-me) inspect/ATTRS]
+                     (inspect/update-attrs #(assoc % :changed :me))
+                     hiccup)
+                   (specter/select [(inspect/matches :.find-me) inspect/ATTRS]))]
+      (is (every? #(= :me (:changed %)) els))))
 
+  (testing "replace element"
+    (let [els (specter/setval
+                [(inspect/matches :h1)]
+                [:div.replaced "I've been replaced!"]
+                hiccup)]
+      (is (seq (specter/select [(inspect/matches :div.replaced)] els))))))
