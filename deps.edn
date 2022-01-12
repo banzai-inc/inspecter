@@ -1,0 +1,9 @@
+{:paths   ["src"]
+ :deps    {org.clojure/clojure   {:mvn/version "1.10.3"}
+           com.rpl/specter       {:mvn/version "1.1.3"}
+           instaparse/instaparse {:mvn/version "1.4.10"}}
+
+ :aliases {:dev  {:extra-paths ["development/src"]
+                  :extra-deps  {hashp/hashp {:mvn/version "0.2.1"}}}
+
+           :test {:extra-paths ["test"]}}}
