@@ -5,6 +5,12 @@ popular [Specter](https://github.com/redplanetlabs/specter)
 for selecting and transforming [Hiccup](https://github.com/weavejester/hiccup) data using
 simple CSS selectors.
 
+## Installation
+First add [Specter](https://github.com/redplanetlabs/specter) as a dependency to
+your project. Then add the following dep to your project or deps file:
+
+[TBD]
+
 ## Usage
 
 First be sure to include the relevant libraries:
