@@ -69,3 +69,7 @@ adding support for matching on attributes.). e.g. These are each supported:
 * `:div` - Matches all `[:div ...]` elements
 * `:nav#main` - Matches all `[:nav {:id "main"} ...]` or `[:nav#main ...]`
 * `:div.small.button` - Matches all `[:div.small.button]` or `[:div {:class "small button"} ...]` elements
+
+## License
+
+Distributed under the [MIT License](https://github.com/banzai-inc/inspecter/blob/main/LICENSE).
