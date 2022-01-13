@@ -9,7 +9,7 @@ simple CSS selectors.
 First add [Specter](https://github.com/redplanetlabs/specter) as a dependency to
 your project. Then add the following dep to your project or deps file:
 
-[TBD]
+[![Clojars Project](https://img.shields.io/clojars/v/com.teachbanzai/inspecter.svg)](https://clojars.org/com.teachbanzai/inspecter)
 
 ## Usage
 
