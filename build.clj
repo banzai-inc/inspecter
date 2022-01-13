@@ -12,7 +12,7 @@
     (when-not (zero? exit)
       (throw (ex-info "Tests failed" {})))))
 
-(def lib 'com.banzai/inspecter)
+(def lib 'com.teachbanzai/inspecter)
 (def version (format (slurp "./version") (b/git-count-revs nil)))
 (def src-dirs ["src"])
 (def path "target")
