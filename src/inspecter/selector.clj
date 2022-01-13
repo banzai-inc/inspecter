@@ -33,11 +33,10 @@
   "Returns a tokenized representation of the (limited) CSS selector. The
    following queries are supported:
 
-   :div => {:tag :div}
-   :div#hello => {:tag :div :id \"hello\"}
-   :div.hello.world => {:tag :div :class #{\"hello\" \"world\"}}"
+   \"div\" => {:tag :div}
+   \"div#hello\" => {:tag :div :id \"hello\"}
+   \"div.hello.world\" => {:tag :div :class #{\"hello\" \"world\"}}"
   [selector]
   (->> selector
-       (name)
        (selector-parser)
        (reduce (update-selectors updates) {})))

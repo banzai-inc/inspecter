@@ -15,7 +15,8 @@
 (defn- describe
   "Puts an element into a format that can be compared with a selector."
   [[tag {:keys [id class]} & _]]
-  (-> (s/parse-selector tag)
+  (-> (name tag)
+      (s/parse-selector)
       (update :id (fn [eid] (or eid id)))
       (update :class (fn [cx] (apply conj (as-set class) cx)))))
 

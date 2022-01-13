@@ -18,21 +18,21 @@
   (boolean (some (partial inspect/css-matches selector) els)))
 
 (deftest select-tests
-  (let [els (specter/select [(inspect/matches :.find-me)] hiccup)]
-    (is (includes? :div#one els))
-    (is (includes? :a#two els))
-    (is (includes? :div#three els))
-    (is (includes? :div#four els))
-    (is (not (includes? :h1 els)))))
+  (let [els (specter/select [(inspect/matches ".find-me")] hiccup)]
+    (is (includes? "div#one" els))
+    (is (includes? "a#two" els))
+    (is (includes? "div#three" els))
+    (is (includes? "div#four" els))
+    (is (not (includes? "h1" els)))))
 
 (deftest select-attrs-tests
   (is (= [{:href "https://www.google.com"}
           {:without "contents."}
           {:found "me"}]
-         (specter/select [(inspect/matches :.find-me) inspect/ATTRS] hiccup))))
+         (specter/select [(inspect/matches ".find-me") inspect/ATTRS] hiccup))))
 
 (deftest select-contents-tests
-  (let [[c1 c2 c3] (specter/select [(inspect/matches :.find-me) inspect/CONTENTS] hiccup)]
+  (let [[c1 c2 c3] (specter/select [(inspect/matches ".find-me") inspect/CONTENTS] hiccup)]
     (is (string? c1))
     (is (string? c2))
     (is (vector? c3))))
@@ -40,15 +40,15 @@
 (deftest transform-test
   (testing "update attributes"
     (let [els (->> (specter/transform
-                     [(inspect/matches :.find-me) inspect/ATTRS]
+                     [(inspect/matches ".find-me") inspect/ATTRS]
                      (inspect/update-attrs #(assoc % :changed :me))
                      hiccup)
-                   (specter/select [(inspect/matches :.find-me) inspect/ATTRS]))]
+                   (specter/select [(inspect/matches ".find-me") inspect/ATTRS]))]
       (is (every? #(= :me (:changed %)) els))))
 
   (testing "replace element"
     (let [els (specter/setval
-                [(inspect/matches :h1)]
+                [(inspect/matches "h1")]
                 [:div.replaced "I've been replaced!"]
                 hiccup)]
-      (is (seq (specter/select [(inspect/matches :div.replaced)] els))))))
+      (is (seq (specter/select [(inspect/matches "div.replaced")] els))))))
