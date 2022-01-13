@@ -23,7 +23,9 @@
   [_]
   (let [basis (b/create-basis {:project "deps.edn"})
         jar-file (format "target/%s.jar" (name lib))]
+    (println "Cleaning ./target...")
     (b/delete {:path path})
+    (println "Writing pom.xml...")
     (b/write-pom {:class-dir class-dir
                   :basis     basis
                   :lib       lib
@@ -31,5 +33,6 @@
                   :src-dirs  src-dirs})
     (b/copy-dir {:src-dirs   src-dirs
                  :target-dir class-dir})
+    (println "Building JAR...")
     (b/jar {:class-dir class-dir
             :jar-file  jar-file})))

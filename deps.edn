@@ -18,5 +18,5 @@
                     :exec-fn    deps-deploy.deps-deploy/deploy
                     :exec-args  {:installer      :remote
                                  :sign-releases? false
-                                 :pom-file       "target/classes/META-INF/maven/com.banzai/inspecter/pom.xml"
+                                 :pom-file       "target/classes/META-INF/maven/com.teachbanzai/inspecter/pom.xml"
                                  :artifact       "target/inspecter.jar"}}}}
