@@ -31,7 +31,7 @@ Find a Hiccup element by its id:
    [:h2#one {:data-attr "one"} "Hello"]
    [:h2#two {:data-attr "two"} "World"]])
 
-user=> (specter/select [(i/matches :#two)])
+user=> (specter/select [(i/matches "#two")])
 [[:h2#two {:data-attr "one"} "World"]]
 ```
 
@@ -40,7 +40,7 @@ Specter's `select` function returns a vector of _ALL_ items that match the selec
 Push it a little further and grab the attribute maps for every `h2`:
 
 ```clojure
-user=> (specter/select [(i/matches :h2) i/ATTRS])
+user=> (specter/select [(i/matches "h2") i/ATTRS])
 [{:data-attr "one"}
  {:data-attr "two"}]
 ```
@@ -57,7 +57,7 @@ them in place. This library makes updating Hiccup in place easy:
    [:h2.find-me "My Subtitle"]])
 
 user=> (specter/transform
-         [(inspect/matches :.find-me) inspect/ATTRS]
+         [(inspect/matches ".find-me") inspect/ATTRS]
          (inspect/update-attrs #(assoc % :changed :me))
          hiccup)
 [:div
@@ -81,9 +81,9 @@ Inspecter matches Hiccup elements via simple, limited-scope CSS selectors. While
 Inspecter implements a narrow set for **tag**, **id**, and **class** matching. (I'm considering 
 adding support for matching on attributes.). e.g. These are each supported:
 
-* `:div` - Matches all `[:div ...]` elements
-* `:nav#main` - Matches all `[:nav {:id "main"} ...]` or `[:nav#main ...]`
-* `:div.small.button` - Matches all `[:div.small.button]` or `[:div {:class "small button"} ...]` elements
+* `div` - Matches all `[:div ...]` elements
+* `nav#main` - Matches all `[:nav {:id "main"} ...]` or `[:nav#main ...]`
+* `div.small.button` - Matches all `[:div.small.button]` or `[:div {:class "small button"} ...]` elements
  
 ## License
 
