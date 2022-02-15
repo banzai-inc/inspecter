@@ -31,7 +31,7 @@ Find a Hiccup element by its id:
    [:h2#one {:data-attr "one"} "Hello"]
    [:h2#two {:data-attr "two"} "World"]])
 
-user=> (specter/select [(i/matches "#two")])
+user=> (specter/select [(i/matches "#two")] hiccup)
 [[:h2#two {:data-attr "one"} "World"]]
 ```
 
@@ -40,7 +40,7 @@ Specter's `select` function returns a vector of _ALL_ items that match the selec
 Push it a little further and grab the attribute maps for every `h2`:
 
 ```clojure
-user=> (specter/select [(i/matches "h2") i/ATTRS])
+user=> (specter/select [(i/matches "h2") i/ATTRS] hiccup)
 [{:data-attr "one"}
  {:data-attr "two"}]
 ```
