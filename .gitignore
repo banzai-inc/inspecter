@@ -3,3 +3,4 @@ inspecter.iml
 .nrepl-port
 .cpcache/
 target/
+.clj-kondo
