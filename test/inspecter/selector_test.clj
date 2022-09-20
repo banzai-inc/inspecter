@@ -5,6 +5,7 @@
 (deftest parse-selector-test
   (are [x y]
     (= x y)
+    {:wildcard true} (s/parse-selector "*")
     {:tag :div} (s/parse-selector "div")
     {:class #{"hello" "world"}} (s/parse-selector ".hello.world")
     {:tag :div :class #{"hello"}} (s/parse-selector "div.hello")

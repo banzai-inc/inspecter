@@ -81,6 +81,7 @@ Inspecter matches Hiccup elements via simple, limited-scope CSS selectors. While
 Inspecter implements a narrow set for **tag**, **id**, and **class** matching. (I'm considering 
 adding support for matching on attributes.). e.g. These are each supported:
 
+* `*` - Matches every element
 * `div` - Matches all `[:div ...]` elements
 * `nav#main` - Matches all `[:nav {:id "main"} ...]` or `[:nav#main ...]`
 * `div.small.button` - Matches all `[:div.small.button]` or `[:div {:class "small button"} ...]` elements

@@ -3,16 +3,18 @@
 
 (def selector-parser
   (insta/parser
-    "<selector> = tag? id? class*
+    "<selector> = wildcard?|(tag? id? class*)
      <name>     = #'[A-Za-z0-9\\-\\_]+'
+     wildcard   = <'*'>
      id         = <'#'> name
      class      = <'.'> name
      tag        = name"))
 
 (defn- update-selectors [tags-n-fns]
   (fn [memo [k new-val]]
-    (let [update-fn (get tags-n-fns k)]
-      (assoc memo k (update-fn (get memo k) new-val)))))
+    (if-let [update-fn (get tags-n-fns k)]
+      (assoc memo k (update-fn (get memo k) new-val))
+      (throw (ex-info (str "There is no update function for " k ".") {})))))
 
 (defn- conj-to-set
   "Conj's the items into a set."
@@ -25,9 +27,10 @@
   new-val)
 
 (def ^:private updates
-  {:tag   (comp keyword take-newest)
-   :id    take-newest
-   :class conj-to-set})
+  {:wildcard (constantly true)
+   :tag      (comp keyword take-newest)
+   :id       take-newest
+   :class    conj-to-set})
 
 (defn parse-selector
   "Returns a tokenized representation of the (limited) CSS selector. The

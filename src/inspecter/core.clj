@@ -21,9 +21,10 @@
       (update :class (fn [cx] (apply conj (as-set class) cx)))))
 
 (def ^:private tokens-equal
-  {:tag   =
-   :id    =
-   :class #(empty? (set/difference %1 %2))})
+  {:wildcard (constantly true)
+   :tag      =
+   :id       =
+   :class    #(empty? (set/difference %1 %2))})
 
 (defn- equals
   "Iterates over each token in the selector asking whether it's
