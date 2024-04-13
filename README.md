@@ -78,13 +78,13 @@ Inspecter exposes the following functions for Hiccup path navigation and transfo
 
 Inspecter matches Hiccup elements via simple, limited-scope CSS selectors. While the 
 [universe of potential CSS selectors](https://www.w3.org/TR/selectors-4/) is enormous, 
-Inspecter implements a narrow set for **tag**, **id**, and **class** matching. (I'm considering 
-adding support for matching on attributes.). e.g. These are each supported:
+Inspecter implements a narrow set for **tag**, **id**, and **class** matching. These are each supported:
 
 * `*` - Matches every element
 * `div` - Matches all `[:div ...]` elements
 * `nav#main` - Matches all `[:nav {:id "main"} ...]` or `[:nav#main ...]`
 * `div.small.button` - Matches all `[:div.small.button]` or `[:div {:class "small button"} ...]` elements
+* `div[hello=world]` - Matches all `[:div {:hello "world"} ...]` elements
  
 ## License
 

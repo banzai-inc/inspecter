@@ -7,14 +7,12 @@
 (def hiccup
   [:div#one.find-me {:found "me"}
    [:div
-    [:h1 {} "More to say."]
+    [:h1 {:data-find "me"} "More to say."]
     [:a#two.find-me {:href "https://www.google.com"} "A link!"]
     [:div#three.find-me "Without attributes."
      [:a "another link"]]
     [:div#four.find-me {:without "contents."}]
     "Some more content."]])
-
-(specter/select [(inspect/matches "*")] hiccup)
 
 (defn- includes? [selector els]
   (boolean (some (partial inspect/css-matches selector) els)))
@@ -29,7 +27,11 @@
       (is (includes? "a#two" els))
       (is (includes? "div#three" els))
       (is (includes? "div#four" els))
-      (is (not (includes? "h1" els))))))
+      (is (not (includes? "h1" els)))))
+
+  (testing "attribute match"
+    (is (seq (specter/select [(inspect/matches "h1[data-find=me]")] hiccup)))
+    (is (empty? (specter/select [(inspect/matches "h1[data-find=you]")] hiccup)))))
 
 (deftest select-attrs-tests
   (is (= [{:href "https://www.google.com"}

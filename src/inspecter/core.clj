@@ -14,16 +14,19 @@
 
 (defn- describe
   "Puts an element into a format that can be compared with a selector."
-  [[tag {:keys [id class]} & _]]
+  [[tag {:keys [id class] :as attrs} & _]]
   (-> (name tag)
       (s/parse-selector)
       (update :id (fn [eid] (or eid id)))
-      (update :class (fn [cx] (apply conj (as-set class) cx)))))
+      (update :class (fn [cx] (apply conj (as-set class) cx)))
+      (assoc :attrs (when (map? attrs)
+                      (dissoc attrs :id :class)))))
 
 (def ^:private tokens-equal
   {:wildcard (constantly true)
    :tag      =
    :id       =
+   :attrs    =
    :class    #(empty? (set/difference %1 %2))})
 
 (defn- equals
