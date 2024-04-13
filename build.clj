@@ -30,7 +30,11 @@
                   :basis     basis
                   :lib       lib
                   :version   version
-                  :src-dirs  src-dirs})
+                  :src-dirs  src-dirs
+                  :pom-data  [[:licenses
+                               [:license
+                                [:name "MIT License"]
+                                [:url "https://raw.githubusercontent.com/banzai-inc/inspecter/main/LICENSE"]]]]})
     (b/copy-dir {:src-dirs   src-dirs
                  :target-dir class-dir})
     (println "Building JAR...")
